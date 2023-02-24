@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract PegNFT is ERC721URIStorage, Ownable {
+contract PegNFT is ERC721, Ownable {
     mapping(address => bool) public nftBridges;
     string public baseURI;
 
@@ -27,7 +27,6 @@ contract PegNFT is ERC721URIStorage, Ownable {
         string memory
     ) external onlyNftBridge {
         _mint(to, id);
-        // _setTokenURI(id, uri);
     }
 
     function burn(uint256 id) external onlyNftBridge {
