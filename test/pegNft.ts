@@ -31,6 +31,14 @@ describe("Greeter", function () {
     );
   });
 
+  it("set bas uri", async function () {
+    await expect(
+      PegNFTContract.connect(test).setBaseURI("https://xiaobaiskill.com/image/")
+    ).to.be.revertedWith("Ownable: caller is not the owner");
+
+    PegNFTContract.setBaseURI("https://xiaobaiskill.com/image/");
+  });
+
   it("set nft bridge", async function () {
     await expect(
       PegNFTContract.connect(test).setNftBridge(bridge.address, true)
@@ -92,6 +100,9 @@ describe("Greeter", function () {
 
     expect(await PegNFTContract.ownerOf(1)).to.equal(test.address);
     expect(await PegNFTContract.ownerOf(2)).to.equal(test.address);
+
+    console.log(await PegNFTContract.tokenURI(1));
+    console.log(await PegNFTContract.tokenURI(2));
 
     PegNFTContract.connect(bridge).burn(1);
   });

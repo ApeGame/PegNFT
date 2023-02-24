@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PegNFT is ERC721URIStorage, Ownable {
     mapping(address => bool) public nftBridges;
+    string public baseURI;
 
     constructor(
         string memory name_,
@@ -23,10 +24,10 @@ contract PegNFT is ERC721URIStorage, Ownable {
     function bridgeMint(
         address to,
         uint256 id,
-        string memory uri
+        string memory
     ) external onlyNftBridge {
         _mint(to, id);
-        _setTokenURI(id, uri);
+        // _setTokenURI(id, uri);
     }
 
     function burn(uint256 id) external onlyNftBridge {
@@ -34,6 +35,14 @@ contract PegNFT is ERC721URIStorage, Ownable {
     }
 
     // --------------------------------------------
+
+    function _baseURI() internal view virtual override returns (string memory) {
+        return baseURI;
+    }
+
+    function setBaseURI(string memory _uri) external onlyOwner {
+        baseURI = _uri;
+    }
 
     function setNftBridge(address _nftBridge, bool _auth) external onlyOwner {
         nftBridges[_nftBridge] = _auth;
