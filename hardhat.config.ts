@@ -45,6 +45,13 @@ const config: HardhatUserConfig = {
           ? [process.env.PRIVATE_KEY_TEST]
           : [],
     },
+    polygontestzkevm: {
+      url: process.env.POLYGON_TEST_ZKEVM_URL || "",
+      accounts:
+        process.env.PRIVATE_KEY_TEST !== undefined
+          ? [process.env.PRIVATE_KEY_TEST]
+          : [],
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
