@@ -38,6 +38,11 @@ const config: HardhatUserConfig = {
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
+    polygonzkevm: {
+      url: process.env.POLYGON_MAIN_ZKEVM_URL || "",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
     polygontest: {
       url: process.env.POLYGON_TEST_URL || "",
       accounts:
@@ -61,7 +66,18 @@ const config: HardhatUserConfig = {
     apiKey: {
       polygonMumbai: "AETMWJBB9WTFK95EE98W8D3JTBXWGX83SZ",
       polygon: "AETMWJBB9WTFK95EE98W8D3JTBXWGX83SZ",
+      polygonzkevm: "QADPA8U7I9EU4K1I672Y9QHRAY7PFJ5WAX",
     },
+    customChains: [
+      {
+        network: "polygonzkevm",
+        chainId: 1101,
+        urls: {
+          apiURL: "https://api-zkevm.polygonscan.com/api",
+          browserURL: "https://zkevm.polygonscan.com/",
+        },
+      },
+    ],
   },
 };
 

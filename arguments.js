@@ -1,5 +1,5 @@
 module.exports = [
     "Meta Apes Fighter",
     "MAF",
-    "0xc4CdC62E2D5c57A2a06aF9D5332D4bc18De1B553",
+    "0xA84E60c92B2731868a51850560767B59DAa5feB0",
 ];
